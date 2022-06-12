@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% block content %}
+	{% for post in posts %}
+		{% include 'components/post.html' %}
+	{% endfor %}
+{% endblock content %}

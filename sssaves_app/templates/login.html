@@ -1,0 +1,60 @@
+{% extends "auth.html" %}
+{% block content %}
+	<p>welcome back pimp</p>
+	<form method="POST" action="" novalidate>
+		{{ form.hidden_tag() }}
+
+			{% with messages = get_flashed_messages(with_categories=true) %}
+						{% if messages %}
+							{% for category, message in messages %}
+								<div class="alert alert__{{ category }}">
+									{{ message }}
+								</div>
+							{% endfor %}
+						{% endif %}
+					{% endwith %}
+					
+			<fieldset>
+				<label for="email">
+					{{ form.email.label(class="form__label") }}
+				</label>
+				
+				{% if form.email.errors %}
+					{{ form.email(class="form__input form__invalid") }}
+					<div class="feedback__error">
+						{% for error in form.email.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.email(class="form__input") }}
+				{% endif %}
+				<label for="password">
+					{{ form.password.label(class="form__label") }}
+				</label>
+				
+				{% if form.password.errors %}
+					{{ form.password(class="form__input form__invalid") }}
+					<div class="feedback__error">
+						{% for error in form.password.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.password(class="form__input") }}
+				{% endif %}
+
+				<div class="form__group">
+					{{ form.remember(class="form__check float-left") }}
+					<label for="email">
+						{{ form.remember.label(class="form__label") }}
+					</label>
+				</div>
+				<div class="form__group clearfix">
+					{{ form.submit(class="link link__primary") }}
+				</div>
+			</fieldset>
+		</form>
+		<p><a href="#" class="link link__primary">Forgot your password?</a></p>
+		<p><a href="{{ url_for('register') }}" class="link link__primary">Register</a> a new account</p>
+	{% endblock content %}
