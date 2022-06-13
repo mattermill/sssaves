@@ -1,0 +1,8 @@
+{
+    "SOURCES_PATH": "sass",
+    "TARGET_PATH": "css",
+    "LIBRARY_PATHS": [],
+    "OUTPUT_STYLES": "compressed",
+    "SOURCE_COMMENTS": false,
+    "EXCLUDES": []
+}

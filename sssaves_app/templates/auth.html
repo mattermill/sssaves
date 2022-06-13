@@ -12,10 +12,19 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
 		<!-- Milligram CSS -->
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}
-">
-	</head>
-	<body>
-		<div class="container outer__main">
+			">
+		</head>
+		<body>
+			<div class="container outer__main">
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<div class="alert alert__{{ category }}">
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
 			<div class="row inner__main">
 				<div class="column auth__main">
 					<header class="row header__content">
