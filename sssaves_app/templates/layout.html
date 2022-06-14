@@ -23,27 +23,28 @@
 						<nav class="nav">
 							<ul>
 								<li>
-									<h1>Welcome</h1>
 									{% if current_user.is_authenticated %}
-										<a class="link link__primary" href="{{ url_for('logout') }}">Logout {{ current_user.username }}</a>
+										<a href="{{ url_for('profile') }}" class="pfp__lockup v-align">
+											<img src="{{ pfp }}" class="pfp pfp__sidebar" alt="{{ current_user }}">
+											<span><strong class="link link__username">{{ current_user.username }}</strong></span>
+										</a>
 									{% else %}
 										<a class="link link__primary" href="{{ url_for('login') }}">Login</a> or <a class="link link__primary" href="{{ url_for('register') }}">register</a> to start saving shit you've found.
 									{% endif %}
-
 								</li>
-								<li><a href="{{ url_for('home') }}" class="link link__active">home</a></li>
-								<li><a href="{{ url_for('about') }}" class="link">about</a></li>
+								<li><strong>+</strong> <a href="{{ url_for('new_save') }}" class="link link__primary">new save</a></li>
+								<li><strong>-</strong> <a href="{{ url_for('home') }}" class="link link__active">home</a></li>
 							</ul>
 						</nav>
 					</div>
-					<div class="logo"><a href="/home"><img src="static/img/logo.svg" alt="saves" /></a></div>
+					<div class="row">
+						<div class="column narrow">
+							<a href="/home" class="logo"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="saves" /></a>
+							<a href="{{ url_for('account') }}" class="link">settings</a> | <a href="{{ url_for('logout') }}" class="link">logout</a>
+						</div>
+					</div>
 				</div>
 				<div class="column content__main">
-					<header class="row header__content">
-						<div class="column"><h1>{{ title }}</h1></div>
-						<div class="column narrow"><a href="/new" class="link link__primary">+ new save</a></div>
-					</header>
-
 					{% with messages = get_flashed_messages(with_categories=true) %}
 						{% if messages %}
 							{% for category, message in messages %}

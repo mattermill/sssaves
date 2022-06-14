@@ -26,11 +26,11 @@ body
 	line-height: 1.6
 	height: 100%
 
-.outer__main, .inner__main
+.outer__main, .inner__main, .auth__container
 	height: 100%
 	min-height: 100%
 
-.sidebar__main, .content__main, .auth__main
+.sidebar__main, .content__main
 	padding-top: $space-l !important
 	padding-bottom: $space-l !important
 	min-height: 100%
@@ -46,3 +46,20 @@ body
 
 .header__content
 	justify-content: space-between
+
+.auth__container
+	justify-content: center
+	align-items: center
+.auth__main
+	max-width: 380px !important
+
+	.logo
+		max-width: 12em
+
+	.auth__intro
+		margin: $space-s 0
+	.buttonset
+		display: flex
+		.link__primary
+			flex: 1
+			margin-right: $space-s

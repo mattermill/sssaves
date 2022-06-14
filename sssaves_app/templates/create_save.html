@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+	<header class="row header__content">
+		<div class="column"><h1>new save</h1></div>
+	</header>
+	<div class="row">
+		<div class="column">
+			<p>this better be good</p>
+			<form method="POST" action="" novalidate>
+				{{ form.hidden_tag() }}
+				
+				<fieldset>
+					<!-- URL -->
+					<div class="form__group">						
+						{% if form.url.errors %}
+							<label for="url">
+								{{ form.url.label(class="form__label float-left") }}
+							</label>
+							<div class="feedback__error">
+								{% for error in form.url.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{{ form.url(class="form__input form__invalid") }}
+						{% else %}
+							<label for="url">
+								{{ form.url.label(class="form__label") }}
+							</label>
+							{{ form.url(class="form__input") }}
+						{% endif %}
+					</div>
+					<!-- TITLE -->
+					<label for="title">
+						{{ form.title.label(class="form__label") }}
+					</label>
+					
+					{% if form.title.errors %}
+						{{ form.title(class="form__input form__invalid") }}
+						<div class="feedback__error">
+							{% for error in form.title.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.title(class="form__input") }}
+					{% endif %}
+					<!-- CATEGORY -->
+					<label for="category">
+						{{ form.category.label(class="form__label") }}
+					</label>
+					
+					{% if form.category.errors %}
+						{{ form.category(class="form__input form__invalid") }}
+						<div class="feedback__error">
+							{% for error in form.category.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.category(class="form__input") }}
+					{% endif %}
+					<div class="form__group">
+						{{ form.submit(class="link link__primary") }}
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
-	{% for post in posts %}
-		{% include 'components/post.html' %}
-	{% endfor %}
+<header class="row header__content level">
+	<div class="column"><h1>all saves</h1></div>
+	<div class="column narrow"><a href="{{ url_for('new_save') }}" class="link link__primary">+ new save</a></div>
+</header>
+<div class="row">
+	<div class="column">
+		{% for post in current_user.posts|reverse %}
+			{% include 'components/post.html' %}
+		{% endfor %}
+	</div>
+</div>
 {% endblock content %}

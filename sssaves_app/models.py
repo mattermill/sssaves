@@ -24,6 +24,7 @@ class Post(db.Model):
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 	category = db.Column(db.String(), nullable=False, default='uncategorized')
 	date_posted = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow)
+	image = db.Column(db.String(20), nullable=False, default='post_media.png')
 
 	def __repr__(self):
 		return f"Post('{self.title}', '{self.url}', '{self.category}', '{self.date_posted}')"

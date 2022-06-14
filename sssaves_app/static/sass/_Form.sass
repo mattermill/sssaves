@@ -19,12 +19,11 @@ input:not([type]),
 textarea,
 select
   -webkit-appearance: none // sass-lint:disable-line no-vendor-prefixes
-  background-color: transparent
-  border: .1rem solid $color-quaternary
-  border-radius: .4rem
+  background-color: $color-initial
+  border: .1rem solid $color-text-dark
   box-shadow: none
   box-sizing: inherit // Forced to replace inherit values of the normalize.css
-  height: 3.8rem
+  height: 4.2rem
   padding: .6rem 1.0rem .7rem // This vertically centers text on FF, ignored by Webkit
   width: 100%
 
@@ -33,7 +32,7 @@ select
     outline: 0
 
   &.form__invalid
-    border: 1px solid #FF0000
+    border: 1px solid $color-feedback-negative
 
 select
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 8" width="30"><path fill="%23' + str-slice(inspect($color-quaternary), 2) + '" d="M0,0l6,8l6-8"/></svg>') center right no-repeat
@@ -52,8 +51,8 @@ textarea
 label,
 legend
   display: block
-  font-size: 1.6rem
-  font-weight: 700
+  font-size: 1em
+  font-weight: 600
   margin-bottom: .5rem
 
 fieldset
@@ -66,5 +65,49 @@ input[type='radio']
 
 .label-inline
   display: inline-block
+  font-size: 1em
   font-weight: normal
   margin-left: .5rem
+
+.feedback__error
+  color: $color-feedback-negative
+
+.floating-label 
+  position: relative 
+  margin-top: $space-m
+  input[type="text"] 
+    border: .1rem solid $color-text-dark
+    margin-bottom: 0
+    & + label 
+      position: absolute 
+      pointer-events: none
+      bottom: 0.1em
+      left: $space-s
+      color: $color-text-light 
+      font-size: 1.0em
+      transition: margin 0.2s ease, color 0.2s ease, font-size 0.2s ease 
+      font-weight: 400
+  input[type="text"]:hover 
+    border-bottom: 2px solid $color-text-dark 
+    margin-bottom: 0 
+.floating-label input[type="text"]:focus,
+.floating-label input[type="text"]:active 
+  outline: none 
+  border-bottom: 2px solid $color-text-dark 
+  margin-bottom: 0 
+.floating-label input[type="text"]:focus + label,
+.floating-label input[type="text"]:active + label,
+.floating-label input[type="text"]:valid + label 
+  pointer-events: auto 
+  margin-bottom: $space-m
+  font-size: 0.75em 
+.floating-label input[type="text"]:focus + label,
+.floating-label input[type="text"]:active + label 
+  color: $color-text-light 
+.floating-label input[type="text"].empty:not(:focus) + label,
+.floating-label input[type="text"].empty:not(:active) + label 
+  pointer-events: none 
+  margin-bottom: 0 
+  color: gray 
+  font-size: 1.0em 
+ 

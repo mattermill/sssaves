@@ -1,50 +1,55 @@
 {% extends "auth.html" %}
 {% block content %}
-	<p>welcome back pimp</p>
 	<form method="POST" action="" novalidate>
 		{{ form.hidden_tag() }}
-					
-			<fieldset>
-				<label for="email">
-					{{ form.email.label(class="form__label") }}
-				</label>
-				
+		
+		<!-- <div class="floating-label">
+							<input id="first" type="text" required>
+							<label for="first">First Name</label>
+		</div>
+		<div class="floating-label">
+							<input id="last" type="text" required>
+							<label for="last">Last Name</label>
+		</div> -->
+		<p class="auth__intro"><strong>welcome back pimp</strong></p>
+		<fieldset>
+			<div class="form__group">
 				{% if form.email.errors %}
-					{{ form.email(class="form__input form__invalid") }}
 					<div class="feedback__error">
 						{% for error in form.email.errors %}
 							<span>{{ error }}</span>
 						{% endfor %}
 					</div>
+					{{ form.email(class="form__input form__invalid") }}
 				{% else %}
 					{{ form.email(class="form__input") }}
 				{% endif %}
-				<label for="password">
-					{{ form.password.label(class="form__label") }}
-				</label>
-				
+			</div>
+			<div class="form__group">
 				{% if form.password.errors %}
-					{{ form.password(class="form__input form__invalid") }}
 					<div class="feedback__error">
 						{% for error in form.password.errors %}
 							<span>{{ error }}</span>
 						{% endfor %}
 					</div>
+					{{ form.password(class="form__input form__invalid") }}
 				{% else %}
 					{{ form.password(class="form__input") }}
 				{% endif %}
-
-				<div class="form__group">
-					{{ form.remember(class="form__check float-left") }}
-					<label for="email">
-						{{ form.remember.label(class="form__label") }}
-					</label>
-				</div>
-				<div class="form__group clearfix">
-					{{ form.submit(class="link link__primary") }}
-				</div>
-			</fieldset>
-		</form>
-		<p><a href="#" class="link link__primary">Forgot your password?</a></p>
-		<p><a href="{{ url_for('register') }}" class="link link__primary">Register</a> a new account</p>
-	{% endblock content %}
+			</div>
+			<div class="form__group">
+				{{ form.remember(class="form__check") }}
+				<label for="email" class="label-inline">
+					{{ form.remember.label(class="form__label") }}
+				</label>
+			</div>
+			<div class="form__group buttonset clearfix">
+				{{ form.submit(class="button link link__primary") }}
+				<a class="button link link__primary button-outline">Forgot password?</a>
+			</div>
+			<div class="form__group">
+				<p><a href="{{ url_for('register') }}" class="link link__primary">Register</a> a new account</p>
+			</div>
+		</fieldset>
+	</form>
+{% endblock content %}

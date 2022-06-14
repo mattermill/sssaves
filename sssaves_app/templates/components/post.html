@@ -1,14 +1,12 @@
 <div class="row post__row">
 	<div class="column p-0">
-		<a href="https://zombo.com/" target="_blank" class="link">
+		<a href="{{ post.url }}" target="_blank" class="link">
 			<strong class="link link__primary">{{ post.title }}</strong>
-			<span class="post__url">({{ post.content }})</span>
+			<span class="post__url">({{ post.url }})</span>
 		</a>
-		<span class="float-right post__date">{{ post.date_posted }}</span>
+		<span class="float-right post__date">{{ post.date_posted.strftime('%b %-d') }}</span>
 		<div class="post__categories">
-			<a href="#" class="link post__category">fonts</a>
-			<a href="#" class="link post__category">{{ post.author }}</a>
-			<a href="#" class="link post__category">tools</a>
+			<a href="#" class="link post__category">{{ post.category }}</a>
 		</div>
 	</div>
 </div>

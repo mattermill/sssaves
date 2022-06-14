@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+	<header class="row header__content level">
+		<div class="column">
+			<h1>{{ current_user.username }} / account settings</h1>
+			<p>manage your account</p>
+		</div>
+	</header>
+	<div class="row">
+		<div class="column narrow">
+			<form method="POST" action="" enctype="multipart/form-data" novalidate>
+				{{ form.hidden_tag() }}
+				<fieldset>
+					<div>
+						<img src="{{ pfp }}" class="pfp pfp__account" alt="{{ current_user }}'s profile picture">
+						{{ form.new_pfp(class="link link__primary") }}
+
+						{% if form.new_pfp.errors %}
+							{% for error in form.new_pfp.errors %}
+								<span class="error">{{ error }}</span><br/>
+							{% endfor %}
+						{% endif %}
+					</div>
+					<label for="username">{{ form.username.label(class="form__label ") }}</label>
+					{% if form.username.errors %}
+						{{ form.username(class="form__invalid") }}
+						<div class="feedback__error">
+							{% for error in form.username.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.username(class="form__input") }}
+					{% endif %}
+					<label for="email">
+						{{ form.email.label(class="form__label") }}
+					</label>
+					
+					{% if form.email.errors %}
+						{{ form.email(class="form__input form__invalid") }}
+						<div class="feedback__error">
+							{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.email(class="form__input") }}
+					{% endif %}
+					
+					{{ form.submit(class="link link__primary") }}
+				</fieldset>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

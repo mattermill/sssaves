@@ -25,10 +25,10 @@
 					{% endfor %}
 				{% endif %}
 			{% endwith %}
-			<div class="row inner__main">
+			<div class="row auth__container">
 				<div class="column auth__main">
-					<header class="row header__content">
-						<div><h1>{{ title }}</h1></div>
+					<header class="row">
+						<div class="logo"><img src="{{ url_for('static', filename='img/logo_alt.svg') }}" alt="saves" /></div>
 					</header>
 					{% block content %}{% endblock %}
 				</div>

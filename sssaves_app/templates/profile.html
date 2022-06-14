@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+	<header class="row header__content level">
+		<div class="column narrow"><img src="{{ pfp }}" class="pfp pfp__profile" alt="{{ current_user }}"></div>
+		<div class="column">
+			<p><strong class="link link__username">{{ current_user.username }}</strong></p>
+			<p>this is your profile</p>
+		</div>
+	</header>
+	<div class="row">
+		<div class="column">
+			{% for post in posts|reverse %}
+				{% include 'components/post.html' %}
+			{% endfor %}
+		</div>
+	</div>
+{% endblock content %}
